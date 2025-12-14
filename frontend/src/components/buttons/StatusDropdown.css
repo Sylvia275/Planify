@@ -1,0 +1,52 @@
+.status-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Main button */
+.status-btn {
+    padding: 8px 14px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Status colors */
+.status-btn.done {
+    background-color: #2ecc71;
+    color: #ffffff;
+}
+
+.status-btn.undone {
+    background-color: #f1c40f;
+    color: #ffffff;
+}
+
+.status-btn.cancel {
+    background-color: #e74c3c;
+    color: #ffffff;
+}
+
+/* Dropdown menu */
+.status-menu {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+    z-index: 10;
+}
+
+.status-item {
+    padding: 10px 14px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.status-item:hover {
+    background-color: #f5f5f5;
+}

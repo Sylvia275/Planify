@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import Sidebar from "../components/Sidebar";
+import LeftSidebar from "../components/LeftSidebar";
 import Header from "../components/Header";
 
 function MainLayout() {
@@ -7,7 +7,7 @@ function MainLayout() {
     <div>
       <Header />
 
-      <Sidebar />
+      <LeftSidebar />
 
       {/* CONTENT SHOULD START UNDER HEADER AND SIDE BAR */}
       <main

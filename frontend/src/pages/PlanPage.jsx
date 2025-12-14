@@ -1,4 +1,5 @@
 // src/pages/PlanPage.jsx
+//mock data
 import { planData } from '../data/planData';
 import PlanHeader from '../components/plan/PlanHeader';
 import StageItem from '../components/plan/StageItem';

@@ -133,7 +133,7 @@ const PlanList = ({ initialPlans = [], defaultType = "plan" }) => {
       <div className="planlist-wrapper">
         <div className="planlist-container">
           <div className="header">
-            <h1 className="title">Tất cả</h1>
+
 
             <div className="search-box">
               <input

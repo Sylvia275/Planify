@@ -1,8 +1,8 @@
-// src/pages/ExplorePage.jsx
 import React, { useState } from 'react';
 import ExploreHeader from '../components/explore/ExploreHeader';
 import ExploreTags from '../components/explore/ExploreTags';
-import { plansData, usersData } from '../data/mockData';
+import { usersData } from '../data/mockData'; // giữ nguyên usersData cũ
+import allPlans from '../data/allPlans';     // NEW: dùng data chung
 import './ExplorePage.css';
 
 import Carousel from "../components/common/Carousel.jsx";
@@ -11,10 +11,7 @@ import PlanList from "../components/common/PlanList.jsx";
 const ExplorePage = () => {
   const [activeTab, setActiveTab] = useState('subject');
   const [pinnedTags, setPinnedTags] = useState([]);
-
-  // Chỉ cần 1 state duy nhất: lưu lại cái carousel nào đang được xem toàn bộ
   const [fullView, setFullView] = useState(null);
-  // fullView = null hoặc { title: "Tất cả kế hoạch", items: [...] }
 
   const handlePinTag = (tag) => {
     if (!pinnedTags.includes(tag)) setPinnedTags([...pinnedTags, tag]);
@@ -24,11 +21,13 @@ const ExplorePage = () => {
     setPinnedTags(pinnedTags.filter(t => t !== tag));
   };
 
-  // ================== CHẾ ĐỘ XEM TẤT CẢ (DUY NHẤT 1 KHỐI) ==================
+  // Lọc chỉ những plan công khai
+  const publicPlans = allPlans.filter(plan => plan.isPublic);
+
+  // ================== CHẾ ĐỘ XEM TẤT CẢ ==================
   if (fullView) {
     return (
       <div className="explore-page">
-
         <div style={{ padding: '24px 40px 0', maxWidth: '1400px', margin: '0 auto' }}>
           <button
             onClick={() => setFullView(null)}
@@ -47,15 +46,16 @@ const ExplorePage = () => {
           >
             ← Quay lại khám phá
           </button>
-
+          <h1 style={{ fontSize: '32px', fontWeight: '700', margin: '16px 0 40px', color: '#1e293b' }}>
+            {fullView.title}
+          </h1>
         </div>
-
         <PlanList initialPlans={fullView.items} />
       </div>
     );
   }
 
-  // ================== TRẠNG THÁI BÌNH THƯỜNG – CAROUSEL ==================
+  // ================== TRẠNG THÁI BÌNH THƯỜNG ==================
   return (
     <div className="explore-page">
       <ExploreHeader activeTab={activeTab} setActiveTab={setActiveTab} />
@@ -69,11 +69,11 @@ const ExplorePage = () => {
 
       <Carousel
         title="Kế hoạch nổi bật"
-        items={plansData}
+        items={publicPlans}
         type="plan"
         onViewMore={() => setFullView({
           title: 'Kế hoạch nổi bật',
-          items: plansData
+          items: publicPlans
         })}
       />
 
@@ -86,14 +86,6 @@ const ExplorePage = () => {
           items: usersData
         })}
       />
-
-      {/* Sau này thêm thoải mái */}
-      {/*
-      <Carousel
-        title="Mới nhất"        items={newItems}        type="plan"
-        onViewMore={() => setFullView({ title: 'Kế hoạch mới nhất', items: newItems })}
-      />
-      */}
     </div>
   );
 };
