@@ -4,12 +4,19 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginSignup from "./pages/LoginSignup.jsx";
 
 import MainLayout from './layout/MainLayout.jsx';
+
+//sidebar
 import Home from './pages/Home.jsx';
 import MyPlanPage from "./pages/MyPlanPage.jsx";
 import SavedPage from "./pages/SavedPage";
 import ExplorePage from "./pages/ExplorePage.jsx";
-import PlanPage from "./pages/PlanPage";
+import CreatePlan from "./pages/CreatePlan.jsx";
 
+//detail plan, just for demo
+import PlanDetailPage from "./pages/PlanDetailPage.jsx";
+
+//idk
+import PlanPage from "./pages/PlanPage";
 import Profile from "./pages/Profile.jsx";
 
 
@@ -22,7 +29,11 @@ function App() {
           <Route path="/plan" element={<MyPlanPage/>} />
           <Route path="/saved" element={<SavedPage/>} />
           <Route path="/commu" element={<ExplorePage />} />
-          <Route path="/add" element={<PlanPage/>} />
+          <Route path="/add" element={<PlanPage/>} />  {/* testing login signup */}
+
+          {/*detailplan*/}
+          <Route path="/plans/:id" element={<PlanDetailPage />} />
+
 
 
 
