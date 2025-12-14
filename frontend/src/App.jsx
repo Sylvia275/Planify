@@ -13,11 +13,10 @@ import ExplorePage from "./pages/ExplorePage.jsx";
 import CreatePlan from "./pages/CreatePlan.jsx";
 
 //detail plan, just for demo
-import PlanDetailPage from "./pages/PlanDetailPage.jsx";
+import PlanDetailPage from "./layout/PlanDetailPage.jsx";
 
 //idk
 import PlanPage from "./pages/PlanPage";
-import Profile from "./pages/Profile.jsx";
 
 
 function App() {
@@ -29,7 +28,7 @@ function App() {
           <Route path="/plan" element={<MyPlanPage/>} />
           <Route path="/saved" element={<SavedPage/>} />
           <Route path="/commu" element={<ExplorePage />} />
-          <Route path="/add" element={<PlanPage/>} />  {/* testing login signup */}
+          <Route path="/add" element={<CreatePlan/>} />  {/* testing login signup */}
 
           {/*detailplan*/}
           <Route path="/plans/:id" element={<PlanDetailPage />} />
