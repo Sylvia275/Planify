@@ -1,0 +1,93 @@
+/* src/styles/ExploreTags.css */
+
+.explore-tags-box {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  margin-bottom: 32px;
+}
+
+.explore-pinned-tags {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.explore-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.explore-tag {
+  background: #f1f5f9;
+  color: #475569;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 14.5px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s ease;
+  user-select: none;
+  position: relative;
+}
+
+.explore-tag:hover {
+  background: #dbeafe;
+  border-color: #93c5fd;
+  color: #1e40af;
+}
+
+.explore-tag.pinned {
+  background: #4f46e5 !important;
+  color: white !important;
+  border: none !important;
+  padding-right: 40px !important;
+}
+
+.explore-tag.pinned strong {
+  font-weight: 700;
+}
+
+.explore-unpin-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  font-weight: 300;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  line-height: 1;
+}
+
+.explore-unpin-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .explore-tags-box {
+    padding: 20px;
+  }
+
+  .explore-tag {
+    padding: 9px 18px;
+    font-size: 14px;
+  }
+
+  .explore-tag.pinned {
+    padding-right: 36px;
+  }
+}

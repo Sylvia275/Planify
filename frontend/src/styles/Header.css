@@ -1,0 +1,107 @@
+/* src/styles/Header.css */
+
+.header {
+  height: 70px;
+  width: 100%;
+  background: #0c4a6e;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Left: Logo */
+.header-logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.header-logo {
+  height: 40px;
+}
+
+/* Middle: Search Bar */
+.header-search-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.header-search-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+}
+
+.header-search-icon {
+  width: 20px;
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  transform: translateY(-50%);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.header-search-input {
+  width: 100%;
+  padding: 10px 14px 10px 42px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  background: #e1e7ec;
+}
+
+.header-search-input::placeholder {
+  color: #94a3b8;
+}
+
+/* Right: Icons */
+.header-right-icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header-icon {
+  width: 28px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.header-icon:hover {
+  opacity: 0.8;
+}
+
+/* Responsive: On small screens, reduce padding and search width */
+@media (max-width: 768px) {
+  .header {
+    padding: 0 12px;
+  }
+
+  .header-search-wrapper {
+    max-width: 300px;
+  }
+
+  .header-right-icons {
+    gap: 16px;
+  }
+
+  .header-icon {
+    width: 26px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-search-wrapper {
+    max-width: 220px;
+  }
+}

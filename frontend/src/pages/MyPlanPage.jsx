@@ -1,68 +1,68 @@
 import React, { useState } from 'react';
-import allPlans from '../data/allPlans'; // NEW: dùng data chung
+import allPlans from '../data/allPlans';
+
 import Carousel from "../components/common/Carousel.jsx";
 import PlanList from "../components/common/PlanList.jsx";
+
+// Import the separated CSS
+import "../styles/MyPlanPage.css";
 
 const MyPlanPage = () => {
   const [fullView, setFullView] = useState(null);
 
-  // Giả lập user hiện tại (sau này lấy từ context/auth)
+  // Simulate current user (later from auth/context)
   const currentUserId = "user123";
 
-  // Lọc kế hoạch của user hiện tại
+  // Filter plans belonging to the current user
   const myPlans = allPlans.filter(p => p.authorId === currentUserId);
 
-  // Tạm thời không có lastOpened và status → bỏ filter cũ
-  // Nếu sau này cần thì thêm field vào allPlans.js
-  const recentlyOpened = myPlans; // tạm dùng tất cả
-  const inProcess = myPlans;       // tạm dùng tất cả
+  // Temporary: using all my plans for both sections
+  // Later: add lastOpenedAt, status fields to allPlans data
+  const recentlyOpened = myPlans;
+  const inProcess = myPlans;
 
-  // === CHẾ ĐỘ XEM TẤT CẢ ===
+  // ================== FULL VIEW MODE ==================
   if (fullView) {
     return (
-      <div style={{ background: '#f8fafc', minHeight: '100vh' }}>
-        <div style={{ padding: '24px 40px 0', maxWidth: '1400px', margin: '0 auto' }}>
+      <div className="my-plan-page">
+        <div className="full-view-header">
           <button
             onClick={() => setFullView(null)}
-            style={{
-              background: 'none',
-              border: 'none',
-              color: '#6366f1',
-              fontSize: '18px',
-              fontWeight: '600',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              padding: '8px 0',
-            }}
+            className="back-button"
           >
-            ← Quay lại
+            ← Back
           </button>
-          <h1 style={{ fontSize: '32px', fontWeight: '700', margin: '16px 0 40px', color: '#1e293b' }}>
-            {fullView.title}
-          </h1>
+          <h1 className="full-view-title">{fullView.title}</h1>
         </div>
         <PlanList initialPlans={fullView.items} defaultType="plan" />
       </div>
     );
   }
 
-  // === TRẠNG THÁI BÌNH THƯỜNG ===
+  // ================== NORMAL MODE ==================
   return (
-    <div style={{ background: '#f8fafc', minHeight: '100vh' }}>
+    <div className="my-plan-page">
       <Carousel
-        title="Recently opened"
+        title="Recently Opened"
         items={recentlyOpened}
         type="plan"
-        onViewMore={() => setFullView({ title: 'Recently opened', items: recentlyOpened })}
+        onViewMore={() => setFullView({
+          title: 'All Recently Opened Plans',
+          items: recentlyOpened
+        })}
       />
+
       <Carousel
-        title="In Process"
+        title="In Progress"
         items={inProcess}
         type="plan"
-        onViewMore={() => setFullView({ title: 'In Process', items: inProcess })}
+        onViewMore={() => setFullView({
+          title: 'All In Progress Plans',
+          items: inProcess
+        })}
       />
+
+      {/* Full list of user's plans at the bottom */}
       <PlanList initialPlans={myPlans} defaultType="plan" />
     </div>
   );

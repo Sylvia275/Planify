@@ -1,0 +1,115 @@
+/* src/styles/Task.css */
+
+.task-wrapper {
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.task-header {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 16px;
+  padding-left: 4px;
+}
+
+/* Task Card */
+.task-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  margin-bottom: 32px;
+}
+
+.task-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+}
+
+.task-field label {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #1e293b;
+}
+
+.task-field input {
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.task-field input::placeholder {
+  color: #94a3b8;
+}
+
+.task-field input:focus {
+  border-color: #581c87;
+  box-shadow: 0 0 0 3px rgba(88, 28, 135, 0.15);
+}
+
+/* Duration Field */
+.duration-field {
+  margin-bottom: 32px;
+}
+
+.duration-input {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.duration-input input {
+  width: 120px;
+  text-align: center;
+}
+
+.duration-unit {
+  font-size: 15px;
+  font-weight: 500;
+  color: #64748b;
+}
+
+/* Subtask Section Title (optional if Subtask has its own header) */
+.subtask-section-header {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 32px 0 16px 4px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .task-card {
+    padding: 24px;
+  }
+
+  .task-header {
+    font-size: 19px;
+  }
+
+  .duration-input {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .duration-input input {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .task-wrapper {
+    margin-bottom: 32px;
+  }
+
+  .task-card {
+    padding: 20px;
+  }
+}

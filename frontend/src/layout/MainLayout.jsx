@@ -2,21 +2,17 @@ import { Outlet } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
 
+// Import the CSS file
+import "../styles/MainLayout.css";
+
 function MainLayout() {
   return (
-    <div>
+    <div className="main-layout-container">
       <Header />
-
       <Sidebar />
 
-      {/* CONTENT SHOULD START UNDER HEADER AND SIDE BAR */}
-      <main
-        style={{
-          marginLeft: "70px", // sidebar width collapsed
-          marginTop: "70px",  // header height
-          padding: "20px",
-        }}
-      >
+      {/* Main content area */}
+      <main className="main-content">
         <Outlet />
       </main>
     </div>

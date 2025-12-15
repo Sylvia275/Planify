@@ -1,0 +1,77 @@
+/* src/styles/LikeButton.css */
+
+.like-btn {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: white;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 10;
+}
+
+.like-btn:hover {
+  transform: translateY(-4px) scale(1.08);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+}
+
+.like-btn:active {
+  transform: translateY(-2px) scale(1.05);
+}
+
+.like-btn:focus-visible {
+  outline: 3px solid rgba(239, 68, 68, 0.4);
+  outline-offset: 2px;
+}
+
+/* Heart Icon */
+.like-btn svg {
+  width: 26px;
+  height: 26px;
+  fill: #94a3b8;
+  transition: fill 0.3s ease;
+}
+
+.like-btn.liked svg {
+  fill: #ef4444;
+  animation: heartBeat 0.4s ease-in-out;
+}
+
+@keyframes heartBeat {
+  0% { transform: scale(1); }
+  20% { transform: scale(1.15); }
+  40% { transform: scale(0.95); }
+  60% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* Optional: subtle pulse when liked */
+.like-btn.liked {
+  animation: pulseShadow 1.5s infinite alternate;
+}
+
+@keyframes pulseShadow {
+  from { box-shadow: 0 4px 12px rgba(239, 68, 68, 0.15); }
+  to { box-shadow: 0 8px 20px rgba(239, 68, 68, 0.25); }
+}
+
+/* Responsive - smaller on mobile */
+@media (max-width: 480px) {
+  .like-btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .like-btn svg {
+    width: 24px;
+    height: 24px;
+  }
+}

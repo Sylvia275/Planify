@@ -1,33 +1,57 @@
-// src/components/explore/ExploreTags.jsx
-import React from 'react';
+import React from "react";
+
+// Import the CSS
+import "../../styles/ExploreTags.css";
 
 const tagGroups = {
-  subject: ['Toán', 'Lý', 'Hóa', 'Văn', 'Anh', 'Sinh', 'Sử', 'Địa', 'Tin học'],
-  certificate: ['IELTS', 'TOEIC', 'VSTEP', 'SAT', 'IELTS UKVI', 'TOPIK'],
-  other: ['Kỹ năng mềm', 'Lập trình', 'Thiết kế', 'Marketing', 'Ngoại ngữ'],
+  subject: [
+    "Math", "Physics", "Chemistry", "Literature", "English",
+    "Biology", "History", "Geography", "Computer Science"
+  ],
+  certificate: [
+    "IELTS", "TOEIC", "VSTEP", "SAT", "IELTS UKVI", "TOPIK"
+  ],
+  other: [
+    "Soft Skills", "Programming", "Design", "Marketing", "Foreign Languages"
+  ],
 };
 
 const ExploreTags = ({ activeTab, pinnedTags, onPin, onUnpin }) => {
   const currentTags = tagGroups[activeTab] || [];
 
   return (
-    <div className="tags-box">
+    <div className="explore-tags-box">
+      {/* Pinned Tags */}
       {pinnedTags.length > 0 && (
-        <div className="pinned-tags">
-          {pinnedTags.map(tag => (
-            <span key={`pinned-${tag}`} className="tag pinned">
+        <div className="explore-pinned-tags">
+          {pinnedTags.map((tag) => (
+            <span key={`pinned-${tag}`} className="explore-tag pinned">
               <strong>{tag}</strong>
-              <button className="unpin-btn" onClick={() => onUnpin(tag)}>×</button>
+              <button
+                className="explore-unpin-btn"
+                onClick={() => onUnpin(tag)}
+                aria-label={`Unpin ${tag}`}
+              >
+                ×
+              </button>
             </span>
           ))}
         </div>
       )}
 
-      <div className="tags-container">
+      {/* Available Tags */}
+      <div className="explore-tags-container">
         {currentTags
-          .filter(tag => !pinnedTags.includes(tag))
-          .map((tag, i) => (
-            <span key={i} className="tag" onClick={() => onPin(tag)}>
+          .filter((tag) => !pinnedTags.includes(tag))
+          .map((tag, index) => (
+            <span
+              key={index}
+              className="explore-tag"
+              onClick={() => onPin(tag)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => e.key === "Enter" && onPin(tag)}
+            >
               {tag}
             </span>
           ))}

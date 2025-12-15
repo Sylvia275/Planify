@@ -1,0 +1,26 @@
+/* src/styles/TodayPieChart.css */
+
+.today-pie-chart-container {
+  width: 190px;
+  height: 190px;
+  margin: 0 auto; /* Center horizontally */
+  padding: 8px 0;
+}
+
+/* Optional: subtle animation on load */
+.today-pie-chart-container canvas {
+  animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Responsive: slightly smaller on very narrow sidebars */
+@media (max-width: 1200px) {
+  .today-pie-chart-container {
+    width: 170px;
+    height: 170px;
+  }
+}

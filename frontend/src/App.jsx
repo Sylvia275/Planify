@@ -16,10 +16,6 @@ import CreatePlan from "./pages/CreatePlan.jsx";
 //detail plan, just for demo
 import PlanDetailPage from "./layout/PlanDetailPage.jsx";
 
-//idk
-import PlanPage from "./pages/PlanPage";
-
-
 function App() {
   return (
     <BrowserRouter>

@@ -1,0 +1,160 @@
+/* src/styles/Subtask.css */
+
+.subtask-wrapper {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Header */
+.subtask-header {
+  font-size: 18px;
+  font-weight: 700;
+  color: #002765;
+  margin-bottom: 24px;
+}
+
+/* Input Row */
+.subtask-input-row {
+  display: flex;
+  align-items: center;
+  background: #f8fafc;
+  border-radius: 30px;
+  padding-left: 20px;
+  margin-bottom: 28px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.subtask-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 16px 12px;
+  font-size: 15.5px;
+  color: #1e293b;
+}
+
+.subtask-input::placeholder {
+  color: #94a3b8;
+}
+
+.subtask-add-btn {
+  border: none;
+  outline: none;
+  padding: 16px 36px;
+  background: #581c87;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: all 0.2s ease;
+}
+
+.subtask-add-btn:hover {
+  background: #4c1d95;
+}
+
+.subtask-add-btn:active {
+  transform: scale(0.98);
+}
+
+/* Subtask List */
+.subtask-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.subtask-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  color: #1e293b;
+  padding: 14px 0;
+  border-bottom: 1px solid #f1f5f9;
+  transition: background 0.2s ease;
+}
+
+.subtask-item:last-child {
+  border-bottom: none;
+}
+
+.subtask-item:hover {
+  background-color: #f8fbff;
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+.subtask-text {
+  flex: 1;
+  word-break: break-word;
+  padding-right: 12px;
+}
+
+.subtask-remove-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  color: #64748b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.subtask-remove-btn:hover {
+  background-color: #fee2e2;
+  color: #ef4444;
+}
+
+/* Empty State */
+.subtask-empty {
+  color: #94a3b8;
+  font-style: italic;
+  text-align: center;
+  padding: 32px 0;
+  font-size: 15px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .subtask-wrapper {
+    padding: 24px;
+  }
+
+  .subtask-input-row {
+    flex-direction: column;
+    padding-left: 0;
+    border-radius: 16px;
+  }
+
+  .subtask-input {
+    width: 100%;
+    padding: 16px 20px;
+    border-bottom: 1px solid #e2e8f0;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .subtask-add-btn {
+    width: 100%;
+    border-radius: 0 0 16px 16px;
+    padding: 18px;
+  }
+
+  .subtask-item {
+    font-size: 15.5px;
+  }
+}

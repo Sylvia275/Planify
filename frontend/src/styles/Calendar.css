@@ -1,0 +1,106 @@
+/* src/styles/Calendar.css */
+
+.calendar {
+  background-color: #111111;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #222222;
+  padding: 12px;
+  width: 230px;
+  height: 265px;
+  color: white;
+  margin: auto;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+}
+
+.calendar-btn {
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.calendar-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.month-year {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.weekdays,
+.days {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.weekdays div,
+.days div {
+  width: 14.2857%; /* 100% / 7 */
+  text-align: center;
+  padding: 6px 0;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.days {
+  margin-top: 5px;
+  height: 180px;
+}
+
+/* Day cells */
+.day-cell {
+  transition: all 0.2s ease;
+}
+
+.day-cell:hover {
+  background-color: white;
+  color: orangered;
+}
+
+/* Today highlight */
+.day-today {
+  background-color: orangered;
+  color: white;
+  font-weight: 600;
+}
+
+.day-today:hover {
+  background-color: #ff4500; /* slightly darker on hover */
+  color: white;
+}
+
+/* Faded days from prev/next month */
+.day-fade {
+  color: #555;
+}
+
+.day-fade:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #888;
+}
+
+/* Responsive tweak for very small screens */
+@media (max-width: 360px) {
+  .calendar {
+    width: 210px;
+    height: 250px;
+  }
+
+  .month-year {
+    font-size: 15px;
+  }
+
+  .weekdays div,
+  .days div {
+    font-size: 12px;
+    padding: 5px 0;
+  }
+}

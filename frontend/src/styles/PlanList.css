@@ -1,0 +1,96 @@
+/* src/styles/PlanList.css */
+
+.planlist-wrapper {
+  background: white;
+  border-radius: 28px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  margin: 40px auto;
+  max-width: 1400px;
+  overflow: hidden;
+}
+
+.planlist-container {
+  padding: 40px 40px 60px;
+}
+
+.planlist-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.planlist-search-box {
+  position: relative;
+  width: 360px;
+  max-width: 100%;
+}
+
+.planlist-search-input {
+  width: 100%;
+  padding: 12px 48px 12px 20px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 16px;
+  background: white;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.planlist-search-input:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+}
+
+.planlist-search-icon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+/* Tighter grid: card + gap only */
+.planlist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px; /* Clean card + gap spacing */
+  justify-content: center; /* Center cards when not full row */
+}
+
+.planlist-no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 100px 20px;
+  color: #64748b;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.plan-card-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.plan-card-wrapper:hover {
+  transform: translateY(-8px);
+}
+
+@media (max-width: 768px) {
+  .planlist-wrapper {
+    margin: 20px 16px;
+    border-radius: 20px;
+  }
+  .planlist-container {
+    padding: 32px 20px 50px;
+  }
+  .planlist-grid {
+    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+}
