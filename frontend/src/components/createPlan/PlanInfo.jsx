@@ -12,7 +12,7 @@ const CATEGORIES = [
   "Project"
 ];
 
-const PlanInfo = () => {
+const PlanInfo = ({ title, setTitle, description, setDescription, pictureFile, setPicture, previewUrl, setPreviewUrl}) => {
   const [stages, setStages] = useState([0]);
   const [showCategories, setShowCategories] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -84,6 +84,7 @@ const PlanInfo = () => {
           cursor: pointer;
           position: relative;
           text-align: center;
+          overflow: hidden;
         }
 
         .image-upload input {
@@ -92,6 +93,23 @@ const PlanInfo = () => {
           width: 100%;
           height: 100%;
           cursor: pointer;
+          cursor: pointer;
+          z-index: 2;        /* sits ABOVE the preview */
+        }
+        
+        .image-upload img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover; 
+          border-radius: 16px;
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 1;         /* Behind the input */
+          }
+          
+        .image-upload.has-image {
+          border: none; 
         }
 
         .image-upload span {
@@ -195,22 +213,45 @@ const PlanInfo = () => {
             type="text"
             placeholder="Enter plan title"
             className="plan-title-input"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
           />
         </div>
 
         {/* Plan Info Card */}
         <div className="planinfo-card">
           {/* Image Upload */}
-          <div className="image-upload">
-            <input type="file" accept="image/*" />
+          <div className={`image-upload ${previewUrl ? "has-image" : ""}`}>
+            <input 
+              type="file" 
+              accept="image/*" 
+              onChange={(e) => {
+                const file = e.target.files[0];
+                setPicture(file);
+                setPreviewUrl(URL.createObjectURL(file));
+                }
+              }  
+            />
             <span>Upload Image</span>
+
+            {previewUrl && (
+              <img
+                src={previewUrl}
+                alt="Preview"
+              />
+            )}
+
           </div>
 
           {/* Description + Categories */}
           <div className="planinfo-right">
             <div className="planinfo-field">
               <label>Description</label>
-              <textarea placeholder="Describe your plan..." />
+              <textarea
+                  placeholder="Describe your plan..."
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+              />
             </div>
 
             <div className="categories-section">

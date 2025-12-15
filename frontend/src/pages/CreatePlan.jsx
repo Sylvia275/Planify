@@ -1,13 +1,47 @@
 import React from "react";
 import PlanInfo from "../components/createPlan/PlanInfo";
+import { useState } from "react";
+import { createPlan, updatePlan, deletePlan } from "../api/plan";
+import { uploadImage } from "../api/image";
+import { useNavigate } from "react-router-dom";
 
 const CreatePlan = () => {
-  const handleCreate = () => {
-    // Later:
-    // - collect plan data
-    // - send to backend
-    // - redirect to MyPlan page
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [pictureFile, setPicture] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState(null);
+
+  const navigate = useNavigate();
+
+  const handleCreate = async () => {
     console.log("Create plan");
+    console.log("Title:", title);
+    console.log("Description:", description);
+    console.log("Picture:", pictureFile);
+
+    try {
+      let picture = null;
+      if (pictureFile){
+        const imgResponse = await uploadImage(pictureFile);
+        picture = imgResponse.data.result;
+        console.log("Uploaded picture path:", picture);
+      }
+
+      const response = await createPlan({
+        title, 
+        description, 
+        visibility: "private",
+        status: "incompleted",
+        duration: 0,
+        picture
+      });
+
+      console.log("Plan created:", response.data);
+      navigate("/plan");
+    
+    } catch (error) {
+      console.error("Error creating plan:", error);
+    }
   };
 
   const handleReview = () => {
@@ -87,7 +121,16 @@ const CreatePlan = () => {
 
         {/* Main Content */}
         <div className="createplan-content">
-          <PlanInfo />
+          <PlanInfo
+              title={title}
+              setTitle={setTitle}
+              description={description}
+              setDescription={setDescription}
+              picture={pictureFile}
+              setPicture={setPicture}
+              previewUrl={previewUrl}
+              setPreviewUrl={setPreviewUrl}
+          />
         </div>
 
         {/* Action Buttons */}
