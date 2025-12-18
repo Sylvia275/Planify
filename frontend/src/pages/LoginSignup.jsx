@@ -4,11 +4,11 @@ import Eye from "../assets/icons/Eye.svg";
 import EyeOff from "../assets/icons/Eye_off.svg";
 import { authApi } from "../api/auth";
 
-// Import the CSS
 import "../styles/LoginSignup.css";
 
 const LoginSignup = () => {
   const navigate = useNavigate();
+
   const [isSignUp, setIsSignUp] = useState(false);
 
   const [signupData, setSignupData] = useState({
@@ -27,39 +27,34 @@ const LoginSignup = () => {
   const [showSignupPassword, setShowSignupPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const [passwordError, setPasswordError] = useState("");
-  const [statusMsg, setStatusMsg] = useState("");
-  const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // ... (keep all your handlers exactly the same: handleSignupChange, handleLoginChange, handleSignupSubmit, handleLoginSubmit)
+  const [toasts, setToasts] = useState([]);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+
+  const addToast = (type, message) => {
+    const id = Date.now();
+    setToasts(prev => [...prev, { id, type, message }]);
+    setTimeout(() => {
+      setToasts(prev => prev.filter(t => t.id !== id));
+    }, 4000);
+  };
 
   const handleSignupChange = (e) => {
     const { name, value } = e.target;
     setSignupData({ ...signupData, [name]: value });
-    setPasswordError("");
-    setErrorMsg("");
-    setStatusMsg("");
   };
 
   const handleLoginChange = (e) => {
     const { name, value } = e.target;
     setLoginData({ ...loginData, [name]: value });
-    setErrorMsg("");
-    setStatusMsg("");
   };
-
-  // Keep your handleSignupSubmit and handleLoginSubmit functions unchanged
-  // (copy-paste them as they are)
 
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
-    setErrorMsg("");
-    setStatusMsg("");
-    setPasswordError("");
 
     if (signupData.password !== signupData.confirmPassword) {
-      setPasswordError("Passwords do not match!");
+      addToast("error", "Passwords do not match!");
       return;
     }
 
@@ -71,31 +66,12 @@ const LoginSignup = () => {
         password: signupData.password,
       });
 
-      const { data: loginResponse } = await authApi.login({
-        username: signupData.username.trim(),
-        password: signupData.password,
-      });
-
-      const token = loginResponse?.result?.token || loginResponse?.token;
-      if (!token) throw new Error("No token received after auto-login");
-
-      localStorage.setItem("accessToken", token);
-
-      let username = signupData.username.trim();
-      try {
-        const meRes = await authApi.me();
-        username = meRes?.data?.result?.username || meRes?.data?.username || username;
-      } catch (meErr) {
-        console.warn("Could not fetch user info after signup:", meErr);
-      }
-
-      setStatusMsg(`Sign up successful! Welcome ${username}!`);
+      setShowSuccessModal(true);
       setSignupData({ username: "", email: "", password: "", confirmPassword: "" });
-
-      setTimeout(() => navigate("/home"), 800);
     } catch (err) {
-      console.error("Signup or auto-login error:", err);
-      setErrorMsg(
+      console.error("Signup error:", err);
+      addToast(
+        "error",
         err.response?.data?.message || err.message || "Sign up failed. Please try again."
       );
     } finally {
@@ -103,10 +79,13 @@ const LoginSignup = () => {
     }
   };
 
+  const handleModalOk = () => {
+    setShowSuccessModal(false);
+    setIsSignUp(false);
+  };
+
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    setErrorMsg("");
-    setStatusMsg("");
     setLoading(true);
 
     try {
@@ -125,16 +104,17 @@ const LoginSignup = () => {
         const meRes = await authApi.me();
         username = meRes?.data?.result?.username || meRes?.data?.username || username;
       } catch (meErr) {
-        console.warn("Could not fetch user info (me):", meErr);
+        console.warn("Could not fetch user info:", meErr);
       }
 
-      setStatusMsg(`Login successful! Welcome ${username}!`);
+      addToast("success", `Login successful! Welcome ${username}!`);
       setLoginData({ username: "", password: "" });
 
       setTimeout(() => navigate("/home"), 800);
     } catch (err) {
       console.error("Login error:", err);
-      setErrorMsg(
+      addToast(
+        "error",
         err.response?.data?.message || err.message || "Login failed. Please check your credentials."
       );
     } finally {
@@ -143,139 +123,154 @@ const LoginSignup = () => {
   };
 
   return (
-    <div className={`login-signup-container ${isSignUp ? "active" : ""}`} id="container">
-      {/* LOGIN FORM */}
-      <div className="form-container login-container">
-        <form onSubmit={handleLoginSubmit}>
-          <h1>Login</h1>
+    <>
+      {/* Toast notifications */}
+      <div className="toasts">
+        {toasts.map((toast) => (
+          <div key={toast.id} className={`toast ${toast.type}`}>
+            {toast.message}
+          </div>
+        ))}
+      </div>
 
-          {statusMsg && <p className="message success">{statusMsg}</p>}
-          {errorMsg && <p className="message error">{errorMsg}</p>}
+      {/* Success Modal */}
+      {showSuccessModal && (
+        <div className="modal-overlay" onClick={(e) => e.stopPropagation()}>
+          <div className="modal-content">
+            <h2>Sign Up Successful!</h2>
+            <p>You have successfully created an account.<br />Please log in to continue.</p>
+            <button onClick={handleModalOk}>OK</button>
+          </div>
+        </div>
+      )}
 
-          <input
-            type="text"
-            placeholder="Username"
-            name="username"
-            value={loginData.username}
-            onChange={handleLoginChange}
-            required
-            disabled={loading}
-          />
+      <div className={`container ${isSignUp ? "active" : ""}`} id="container">
+        {/* LOGIN FORM */}
+        <div className="form-container login-container">
+          <form onSubmit={handleLoginSubmit}>
+            <h1>Login</h1>
 
-          <div className="password-wrapper">
             <input
-              type={showLoginPassword ? "text" : "password"}
-              placeholder="Password"
-              name="password"
-              value={loginData.password}
+              type="text"
+              placeholder="Username"
+              name="username"
+              value={loginData.username}
               onChange={handleLoginChange}
               required
               disabled={loading}
             />
-            <img
-              src={showLoginPassword ? EyeOff : Eye}
-              alt="toggle password visibility"
-              className="eye-icon"
-              onClick={() => setShowLoginPassword(!showLoginPassword)}
-            />
-          </div>
 
-          <button type="submit" disabled={loading}>
-            {loading ? "Processing..." : "Login"}
-          </button>
+            <div className="password-wrapper">
+              <input
+                type={showLoginPassword ? "text" : "password"}
+                placeholder="Password"
+                name="password"
+                value={loginData.password}
+                onChange={handleLoginChange}
+                required
+                disabled={loading}
+              />
+              <img
+                src={showLoginPassword ? EyeOff : Eye}
+                alt="toggle password"
+                className="eye-icon"
+                onClick={() => setShowLoginPassword(!showLoginPassword)}
+              />
+            </div>
 
-          <p>
-            Don't have an account?{" "}
-            <a href="#" onClick={(e) => { e.preventDefault(); setIsSignUp(true); }}>
-              Sign up now
-            </a>
-          </p>
-        </form>
-      </div>
+            <button type="submit" disabled={loading}>
+              {loading ? "Processing..." : "Login"}
+            </button>
 
-      {/* SIGN UP FORM */}
-      <div className="form-container signup-container">
-        <form onSubmit={handleSignupSubmit}>
-          <h1>Sign Up</h1>
+            <p>
+              Don't have an account?{" "}
+              <a href="#" onClick={(e) => { e.preventDefault(); setIsSignUp(true); }}>
+                Sign up now
+              </a>
+            </p>
+          </form>
+        </div>
 
-          {passwordError && <p className="message error">{passwordError}</p>}
-          {errorMsg && <p className="message error">{errorMsg}</p>}
-          {statusMsg && <p className="message success">{statusMsg}</p>}
+        {/* SIGN UP FORM */}
+        <div className="form-container signup-container">
+          <form onSubmit={handleSignupSubmit}>
+            <h1>Sign Up</h1>
 
-          <input
-            type="text"
-            placeholder="Username"
-            name="username"
-            value={signupData.username}
-            onChange={handleSignupChange}
-            required
-            disabled={loading}
-          />
-
-          <input
-            type="email"
-            placeholder="Email"
-            name="email"
-            value={signupData.email}
-            onChange={handleSignupChange}
-            required
-            disabled={loading}
-          />
-
-          <div className="password-wrapper">
             <input
-              type={showSignupPassword ? "text" : "password"}
-              placeholder="Password"
-              name="password"
-              value={signupData.password}
+              type="text"
+              placeholder="Username"
+              name="username"
+              value={signupData.username}
               onChange={handleSignupChange}
               required
               disabled={loading}
             />
-            <img
-              src={showSignupPassword ? EyeOff : Eye}
-              alt="toggle password visibility"
-              className="eye-icon"
-              onClick={() => setShowSignupPassword(!showSignupPassword)}
-            />
-          </div>
 
-          <div className="password-wrapper">
             <input
-              type={showConfirmPassword ? "text" : "password"}
-              placeholder="Confirm Password"
-              name="confirmPassword"
-              value={signupData.confirmPassword}
+              type="email"
+              placeholder="Email"
+              name="email"
+              value={signupData.email}
               onChange={handleSignupChange}
               required
               disabled={loading}
             />
-            <img
-              src={showConfirmPassword ? EyeOff : Eye}
-              alt="toggle confirm password visibility"
-              className="eye-icon"
-              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-            />
-          </div>
 
-          <button type="submit" disabled={loading}>
-            {loading ? "Processing..." : "Sign Up"}
-          </button>
+            <div className="password-wrapper">
+              <input
+                type={showSignupPassword ? "text" : "password"}
+                placeholder="Password"
+                name="password"
+                value={signupData.password}
+                onChange={handleSignupChange}
+                required
+                disabled={loading}
+              />
+              <img
+                src={showSignupPassword ? EyeOff : Eye}
+                alt="toggle password"
+                className="eye-icon"
+                onClick={() => setShowSignupPassword(!showSignupPassword)}
+              />
+            </div>
 
-          <p>
-            Already have an account?{" "}
-            <a href="#" onClick={(e) => { e.preventDefault(); setIsSignUp(false); }}>
-              Log in
-            </a>
-          </p>
-        </form>
+            <div className="password-wrapper">
+              <input
+                type={showConfirmPassword ? "text" : "password"}
+                placeholder="Confirm Password"
+                name="confirmPassword"
+                value={signupData.confirmPassword}
+                onChange={handleSignupChange}
+                required
+                disabled={loading}
+              />
+              <img
+                src={showConfirmPassword ? EyeOff : Eye}
+                alt="toggle confirm password"
+                className="eye-icon"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              />
+            </div>
+
+            <button type="submit" disabled={loading}>
+              {loading ? "Processing..." : "Sign Up"}
+            </button>
+
+            <p>
+              Already have an account?{" "}
+              <a href="#" onClick={(e) => { e.preventDefault(); setIsSignUp(false); }}>
+                Log in
+              </a>
+            </p>
+          </form>
+        </div>
+
+        {/* Sliding Cover */}
+        <div className="cover">
+          <h2>WELCOME!</h2>
+        </div>
       </div>
-
-      {/* Sliding Cover */}
-      <div className="cover">
-        <h2>WELCOME!</h2>
-      </div>
-    </div>
+    </>
   );
 };
 
