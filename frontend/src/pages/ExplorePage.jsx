@@ -68,11 +68,11 @@ const ExplorePage = () => {
       />
 
       <Carousel
-        title="Users"
+        title="Plan"
         items={publicPlans} // Replace with actual users data if available
-        type="teacher"
+        type="plan"
         onViewMore={() => setFullView({
-          title: 'All Users',
+          title: 'All Plans',
           items: publicPlans
         })}
       />
