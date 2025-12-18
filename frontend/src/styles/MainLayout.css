@@ -1,0 +1,18 @@
+/* src/styles/MainLayout.css */
+
+.main-layout-container {
+  /* No specific styles needed here, just a wrapper if you want */
+}
+
+.main-content {
+  margin-left: 70px;  /* sidebar width when collapsed */
+  margin-top: 70px;   /* header height */
+  padding: 20px;
+  min-height: calc(100vh - 70px); /* optional: full height minus header */
+  box-sizing: border-box;
+}
+
+
+
+
+

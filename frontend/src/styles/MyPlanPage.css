@@ -1,0 +1,53 @@
+/* src/styles/MyPlanPage.css */
+
+.my-plan-page {
+  background: #f8fafc;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.full-view-header {
+  padding: 24px 40px 0;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: #6366f1;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+}
+
+.back-button:hover {
+  opacity: 0.8;
+}
+
+.full-view-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 16px 0 40px;
+  color: #1e293b;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .my-plan-page {
+    padding: 16px;
+  }
+
+  .full-view-header {
+    padding: 16px 20px 0;
+  }
+
+  .full-view-title {
+    font-size: 28px;
+    margin: 12px 0 32px;
+  }
+}

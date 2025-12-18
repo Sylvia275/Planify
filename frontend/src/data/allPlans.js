@@ -3,198 +3,198 @@
 const allPlans = [
   {
     id: 1,
-    title: "Ôn thi Đại học khối A1",
-    duration: "90 ngày",
-    info: "Kế hoạch chi tiết Toán - Lý - Anh",
-    name: "Ôn thi Đại học khối A1",
+    title: "University Entrance Exam Preparation for Block A1",
+    duration: "90 days",
+    info: "Detailed plan for Math - Physics - English",
+    name: "University Entrance Exam Preparation for Block A1",
     authorId: "user123",
     isPublic: true,
     likes: 245,
-    description: "Kế hoạch ôn tập toàn diện cho kỳ thi THPT Quốc gia khối A1. Bao gồm lý thuyết, bài tập nâng cao và đề thi thử.",
+    description: "Comprehensive review plan for the National High School Exam (Block A1). Includes theory, advanced exercises, and mock exams.",
     stages: [
       {
-        name: "Giai đoạn 1: Nền tảng",
-        duration: "30 ngày",
-        tasks: ["Ôn chương trình lớp 11", "Làm bài tập cơ bản Toán - Lý - Anh", "Kiểm tra tuần"]
+        name: "Phase 1: Foundation",
+        duration: "30 days",
+        tasks: ["Review 11th grade curriculum", "Practice basic exercises in Math - Physics - English", "Weekly tests"]
       },
       {
-        name: "Giai đoạn 2: Nâng cao",
-        duration: "40 ngày",
-        tasks: ["Ôn chuyên đề khó", "Giải đề thi thử các năm trước", "Phân tích lỗi sai"]
+        name: "Phase 2: Advanced",
+        duration: "40 days",
+        tasks: ["Study difficult topics", "Solve past exam papers", "Analyze mistakes"]
       },
       {
-        name: "Giai đoạn 3: Tổng ôn",
-        duration: "20 ngày",
-        tasks: ["Làm full đề thi thử", "Ôn lại kiến thức yếu", "Giữ sức khỏe và tinh thần"]
+        name: "Phase 3: Comprehensive Review",
+        duration: "20 days",
+        tasks: ["Complete full mock exams", "Review weak knowledge areas", "Maintain health and mental well-being"]
       }
     ]
   },
   {
     id: 2,
-    title: "Học tiếng Anh giao tiếp từ con số 0",
-    duration: "30 ngày",
-    info: "Nói chuyện tự tin trong đời sống hàng ngày",
+    title: "Learn Conversational English from Zero",
+    duration: "30 days",
+    info: "Speak confidently in daily life",
     authorId: "user456",
     isPublic: true,
     likes: 412,
-    description: "Chương trình luyện nói thực tế với 500 từ vựng thông dụng nhất và các mẫu câu giao tiếp cơ bản.",
+    description: "Practical speaking program with the 500 most common vocabulary words and basic conversational sentence patterns.",
     stages: [
       {
-        name: "Tuần 1: Phát âm & Từ vựng cơ bản",
-        duration: "7 ngày",
-        tasks: ["Học bảng IPA", "500 từ vựng thiết yếu", "Luyện phát âm hàng ngày"]
+        name: "Week 1: Pronunciation & Basic Vocabulary",
+        duration: "7 days",
+        tasks: ["Learn the IPA chart", "500 essential vocabulary words", "Daily pronunciation practice"]
       },
       {
-        name: "Tuần 2-4: Luyện nói theo chủ đề",
-        duration: "21 ngày",
-        tasks: ["Chào hỏi - Giới thiệu bản thân", "Ăn uống - Đi chợ", "Du lịch - Hỏi đường", "Công việc - Phỏng vấn"]
+        name: "Weeks 2-4: Speaking Practice by Topic",
+        duration: "21 days",
+        tasks: ["Greetings - Introducing yourself", "Food - Shopping", "Travel - Asking for directions", "Work - Job interviews"]
       }
     ]
   },
   {
     id: 3,
-    title: "Tập gym tăng cơ cho người mới",
-    duration: "12 tuần",
-    info: "Fullbody 3 buổi/tuần",
+    title: "Gym Workout Plan for Muscle Gain (Beginners)",
+    duration: "12 weeks",
+    info: "Full-body 3 sessions/week",
     authorId: "user123",
     isPublic: true,
     likes: 578,
-    description: "Kế hoạch tập luyện dành cho người mới bắt đầu, tập trung tăng cơ giảm mỡ với lịch dễ theo dõi.",
+    description: "Training plan designed for beginners, focusing on muscle gain and fat loss with an easy-to-follow schedule.",
     stages: [
       {
-        name: "Tuần 1-4: Làm quen & Xây nền",
-        tasks: ["Học kỹ thuật cơ bản", "Tập fullbody 3 buổi/tuần", "Tăng dần trọng lượng tạ"]
+        name: "Weeks 1-4: Adaptation & Building Foundation",
+        tasks: ["Learn basic techniques", "Full-body workouts 3 times/week", "Gradually increase weights"]
       },
       {
-        name: "Tuần 5-12: Tăng cường độ",
-        tasks: ["Thêm sets/reps", "Theo dõi dinh dưỡng", "Nghỉ ngơi phục hồi"]
+        name: "Weeks 5-12: Increase Intensity",
+        tasks: ["Add more sets/reps", "Track nutrition", "Focus on rest and recovery"]
       }
     ]
   },
   {
     id: 4,
-    title: "Học lập trình React từ cơ bản đến nâng cao",
-    duration: "60 ngày",
-    info: "Xây dựng dự án thực tế",
+    title: "Learn React Programming from Basic to Advanced",
+    duration: "60 days",
+    info: "Build real-world projects",
     authorId: "user789",
     isPublic: true,
     likes: 892,
-    description: "Hành trình từ zero đến có thể làm freelance React. Bao gồm hooks, router, redux, API...",
+    description: "Journey from zero to being able to freelance with React. Covers hooks, router, redux, APIs, and more.",
     stages: [
-      { name: "Tuần 1-2: JSX & Components", tasks: ["Setup môi trường", "State & Props", "Project nhỏ"] },
-      { name: "Tuần 3-6: Hooks & Advanced", tasks: ["useEffect, useContext", "React Router", "Custom hooks"] },
-      { name: "Tuần 7-8: Dự án cuối khóa", tasks: ["Xây app todo + auth", "Deploy lên Vercel"] }
+      { name: "Weeks 1-2: JSX & Components", tasks: ["Set up environment", "State & Props", "Small project"] },
+      { name: "Weeks 3-6: Hooks & Advanced Topics", tasks: ["useEffect, useContext", "React Router", "Custom hooks"] },
+      { name: "Weeks 7-8: Final Course Project", tasks: ["Build todo app with authentication", "Deploy to Vercel"] }
     ]
   },
   {
     id: 5,
-    title: "Giảm cân khoa học trong 8 tuần",
-    duration: "56 ngày",
-    info: "Kết hợp ăn uống + tập luyện",
+    title: "Scientific Weight Loss in 8 Weeks",
+    duration: "56 days",
+    info: "Combine diet + exercise",
     authorId: "user234",
     isPublic: true,
     likes: 334,
-    description: "Kế hoạch giảm 5-8kg an toàn, bền vững với thực đơn mẫu và bài tập tại nhà."
+    description: "Safe and sustainable plan to lose 5-8kg with sample meal plans and home workouts."
   },
   {
     id: 6,
-    title: "Luyện thi IELTS 7.0+",
-    duration: "120 ngày",
-    info: "Chiến lược từng band",
+    title: "IELTS Preparation for 7.0+",
+    duration: "120 days",
+    info: "Band-specific strategies",
     authorId: "user456",
     isPublic: true,
     likes: 667,
-    description: "Lộ trình chi tiết cho cả 4 kỹ năng Listening, Reading, Writing, Speaking."
+    description: "Detailed roadmap for all 4 skills: Listening, Reading, Writing, Speaking."
   },
   {
     id: 7,
-    title: "Học vẽ digital cơ bản",
-    duration: "45 ngày",
-    info: "Từ nét cơ bản đến tranh hoàn chỉnh",
+    title: "Learn Basic Digital Drawing",
+    duration: "45 days",
+    info: "From basic lines to complete artwork",
     authorId: "user567",
     isPublic: true,
     likes: 289,
-    description: "Dành cho người mới bắt đầu với tablet hoặc chuột máy tính."
+    description: "For complete beginners using a tablet or computer mouse."
   },
   {
     id: 8,
-    title: "Quản lý tài chính cá nhân hiệu quả",
-    duration: "30 ngày",
-    info: "Tiết kiệm & đầu tư thông minh",
+    title: "Effective Personal Finance Management",
+    duration: "30 days",
+    info: "Smart saving & investing",
     authorId: "user123",
     isPublic: true,
     likes: 156,
-    description: "Thói quen chi tiêu, quỹ khẩn cấp, đầu tư cơ bản cho người trẻ."
+    description: "Spending habits, emergency fund, basic investing for young adults."
   },
   {
     id: 9,
-    title: "Ôn thi THPT Quốc gia môn Văn",
-    duration: "60 ngày",
-    info: "Phân tích tác phẩm trọng tâm",
+    title: "National High School Exam Preparation - Literature",
+    duration: "60 days",
+    info: "Focus on key works analysis",
     authorId: "user890",
     isPublic: true,
     likes: 201,
-    description: "Tóm tắt tác phẩm, phương pháp làm bài nghị luận xã hội và văn học."
+    description: "Summaries of key works, methods for social and literary argument essays."
   },
   {
     id: 10,
-    title: "Học guitar cơ bản trong 30 ngày",
-    duration: "30 ngày",
-    info: "Chơi được 10 bài hát phổ biến",
+    title: "Learn Basic Guitar in 30 Days",
+    duration: "30 days",
+    info: "Play 10 popular songs",
     authorId: "user234",
     isPublic: true,
     likes: 423,
-    description: "Hợp âm cơ bản, quạt chả, đệm hát."
+    description: "Basic chords, strumming patterns, accompaniment for singing."
   },
   {
     id: 11,
-    title: "Xây kênh YouTube từ 0 đến 1K subs",
-    duration: "90 ngày",
-    info: "Chiến lược nội dung + SEO",
+    title: "Build a YouTube Channel from 0 to 1K Subscribers",
+    duration: "90 days",
+    info: "Content strategy + SEO",
     authorId: "user789",
     isPublic: true,
     likes: 512,
-    description: "Lập kế hoạch nội dung, tối ưu video, tăng tương tác."
+    description: "Content planning, video optimization, increasing engagement."
   },
   {
     id: 12,
-    title: "Làm bánh cơ bản tại nhà",
-    duration: "14 ngày",
-    info: "10 công thức dễ làm",
+    title: "Basic Home Baking",
+    duration: "14 days",
+    info: "10 easy recipes",
     authorId: "user567",
     isPublic: true,
     likes: 378,
-    description: "Bánh quy, cupcake, bánh mì không cần lò chuyên dụng."
+    description: "Cookies, cupcakes, bread – no professional oven required."
   },
   {
     id: 13,
-    title: "Luyện thi vào lớp 10 môn Toán",
-    duration: "75 ngày",
-    info: "Chuyên đề trọng tâm",
+    title: "Grade 10 Entrance Exam Preparation - Math",
+    duration: "75 days",
+    info: "Focus on key topics",
     authorId: "user890",
     isPublic: true,
     likes: 298,
-    description: "Ôn tập hình học, đại số, bài toán thực tế thường gặp."
+    description: "Review geometry, algebra, and common real-world problems."
   },
   {
     id: 14,
-    title: "Thiền & Mindfulness hàng ngày",
-    duration: "21 ngày",
-    info: "Xây dựng thói quen giảm stress",
+    title: "Daily Meditation & Mindfulness",
+    duration: "21 days",
+    info: "Build habits to reduce stress",
     authorId: "user123",
     isPublic: true,
     likes: 267,
-    description: "Bài thiền hướng dẫn, kỹ thuật thở, nhật ký cảm xúc."
+    description: "Guided meditation sessions, breathing techniques, emotion journaling."
   },
   {
     id: 15,
-    title: "Học Python cho người mới",
-    duration: "45 ngày",
-    info: "Từ cơ bản đến dự án nhỏ",
+    title: "Learn Python for Beginners",
+    duration: "45 days",
+    info: "From basics to small projects",
     authorId: "user123",
     isPublic: true,
     likes: 734,
-    description: "Biến, hàm, list, dictionary, OOP cơ bản và mini project."
+    description: "Variables, functions, lists, dictionaries, basic OOP, and mini projects."
   }
 ];
 

@@ -1,0 +1,113 @@
+/* src/styles/ExploreHeader.css */
+
+.explore-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 0 8px;
+}
+
+.explore-search-bar {
+  position: relative;
+  flex: 1;
+  max-width: 520px;
+  min-width: 280px;
+}
+
+.explore-search-input {
+  width: 100%;
+  padding: 14px 20px 14px 56px;
+  font-size: 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 30px;
+  outline: none;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.explore-search-input::placeholder {
+  color: #94a3b8;
+}
+
+.explore-search-input:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+.explore-search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Tabs */
+.explore-main-tabs {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.explore-tab-button {
+  padding: 12px 32px;
+  border: none;
+  background: #e0e7ff;
+  color: #4338ca;
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.explore-tab-button:hover {
+  background: #c7d2fe;
+}
+
+.explore-tab-button.active {
+  background: #4f46e5;
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .explore-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+  }
+
+  .explore-search-bar {
+    max-width: 100%;
+  }
+
+  .explore-main-tabs {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .explore-tab-button {
+    padding: 10px 24px;
+    font-size: 14px;
+  }
+
+  .explore-search-input {
+    padding: 12px 16px 12px 48px;
+    font-size: 15px;
+  }
+
+  .explore-search-icon {
+    width: 20px;
+    height: 20px;
+    left: 14px;
+  }
+}

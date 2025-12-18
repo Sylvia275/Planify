@@ -1,0 +1,101 @@
+/* src/styles/CreatePlan.css */
+
+.createplan-page {
+  width: 100%;
+  padding: 24px 32px 60px;
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+.createplan-header {
+  margin-bottom: 32px;
+}
+
+.createplan-header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #002765;
+  margin: 0;
+}
+
+.createplan-content {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.createplan-actions {
+  position: sticky;
+  bottom: 0;
+  background: #ffffff;
+  padding: 20px 0;
+  margin-top: 48px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  border-top: 1px solid #e2e8f0;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.review-btn {
+  padding: 14px 28px;
+  background-color: #edeef0;
+  color: #333;
+  border: none;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.create-btn {
+  padding: 14px 32px;
+  background-color: #153677;
+  color: #ffffff;
+  border: none;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.review-btn:hover,
+.create-btn:hover {
+  opacity: 0.9;
+}
+
+.review-btn:focus-visible,
+.create-btn:focus-visible {
+  outline: 3px solid rgba(21, 54, 119, 0.3);
+  outline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+  .createplan-page {
+    padding: 20px 20px 60px;
+  }
+
+  .createplan-actions {
+    padding: 16px 0;
+    gap: 16px;
+  }
+
+  .review-btn,
+  .create-btn {
+    padding: 12px 24px;
+    font-size: 14.5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .createplan-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .review-btn,
+  .create-btn {
+    width: 100%;
+  }
+}
